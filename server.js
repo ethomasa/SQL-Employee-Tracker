@@ -158,7 +158,7 @@ function addEmployee() {
       });
     });
 }
-
+ 
 
 
 function updateEmployee() {
@@ -167,7 +167,7 @@ function updateEmployee() {
       {
         type: "input",
         message: "Which employee would you like to update?",
-        name: "eeUpdate"
+        name: "Update"
       },
 
       {
@@ -179,7 +179,8 @@ function updateEmployee() {
     //db
     .then(function(answer) {
     
-      connection.query('UPDATE employee SET role_id=? WHERE first_name= ?',[answer.updateRole, answer.eeUpdate],function(err, res) {
+    
+      connection.query('UPDATE employee SET role_id=? WHERE first_name= ?',[answer.updateRole, answer.Update],function(err, res) {
         if (err) throw err;
         console.table(res);
         startScreen();
@@ -223,7 +224,7 @@ function viewEmployees() {
 
 function deleteEmployees() {
   // select from the db
-  const query = "DROP TABLE employee";
+  const query = "DELETE FROM employee";
   connection.query(query, function(err, res) {
     if (err) throw err;
     console.table(res);
