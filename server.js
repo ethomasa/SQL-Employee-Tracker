@@ -22,6 +22,9 @@ function startScreen() {
         "View all roles",
         "View all employees",
         "Update employee role",
+        "Delete all employees",
+        "Delete all departments",
+        "Delete all roles",
         "Quit"
       ],
       message: "What would you like to do?",
@@ -52,6 +55,16 @@ function startScreen() {
         case "Update employee role":
           updateEmployee();
           break;
+        case "Delete all employees":
+          deleteEmployees();
+          break;
+        case "Delete all departments":
+          deleteDepartments();
+          break;
+        case "Delete all roles":
+          deleteRole();
+          break;
+
         default:
           quit();
       }
@@ -176,7 +189,7 @@ function updateEmployee() {
 
 function viewDepartment() {
   // select from the db
-  let query = "SELECT * FROM department";
+  const query = "SELECT * FROM department";
   connection.query(query, function(err, res) {
     if (err) throw err;
     console.table(res);
@@ -187,7 +200,7 @@ function viewDepartment() {
 
 function viewRoles() {
   // select from the db
-  let query = "SELECT * FROM role";
+  const query = "SELECT * FROM role";
   connection.query(query, function(err, res) {
     if (err) throw err;
     console.table(res);
@@ -198,7 +211,7 @@ function viewRoles() {
 
 function viewEmployees() {
   // select from the db
-  let query = "SELECT * FROM employee";
+  const query = "SELECT * FROM employee";
   connection.query(query, function(err, res) {
     if (err) throw err;
     console.table(res);
@@ -206,6 +219,37 @@ function viewEmployees() {
   });
   
 }
+
+
+function deleteEmployees() {
+  // select from the db
+  const query = "DROP TABLE employee";
+  connection.query(query, function(err, res) {
+    if (err) throw err;
+    console.table(res);
+    startScreen();
+  });
+}
+  
+function deleteDepartments() {
+  // select from the db
+  const query = "DELETE FROM department";
+  connection.query(query, function(err, res) {
+    if (err) throw err;
+    console.table(res);
+    startScreen();
+  });
+}
+  function deleteRole() {
+    // select from the db
+    const query = "DELETE FROM role";
+    connection.query(query, function(err, res) {
+      if (err) throw err;
+      console.table(res);
+      startScreen();
+    });
+  }
+
 
 function quit() {
   connection.end();
