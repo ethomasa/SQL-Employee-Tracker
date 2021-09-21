@@ -40,13 +40,13 @@ function startScreen() {
         case "Add employee":
           addEmployee();
           break;
-        case "View departments":
+        case "View all departments":
           viewDepartment();
           break;
-        case "View roles":
+        case "View all roles":
           viewRoles();
           break;
-        case "View employees":
+        case "View all employees":
           viewEmployees();
           break;
         case "Update employee role":
